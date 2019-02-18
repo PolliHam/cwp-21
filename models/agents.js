@@ -8,6 +8,6 @@ module.exports = (Sequelize, sequelize) =>{
         name: Sequelize.STRING,
         email: Sequelize.STRING,
         tel: Sequelize.STRING,
-        officeId: Sequelize.INTEGER
+       // officeId: Sequelize.INTEGER
     })
 }

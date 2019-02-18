@@ -8,8 +8,8 @@ module.exports = (Sequelize, sequelize) =>{
         heading: Sequelize.STRING,
         price: Sequelize.INTEGER,
         currency: Sequelize.STRING,
-        location: Sequelize.STRING,
-        agentId: Sequelize.INTEGER
+        location: Sequelize.STRING
+        //agentId: Sequelize.INTEGER
         }
     )
 }

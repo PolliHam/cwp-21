@@ -1,7 +1,9 @@
 {
-  "db":"agency",
-  "login":"root",
-  "password":"root",
-  "host":"127.0.0.1",
+  "db":{
+    "host":"127.0.0.1",
+    "name":"agency",
+    "user":"root",
+    "password":"root"
+  },
   "dialect":"mysql"
 }
