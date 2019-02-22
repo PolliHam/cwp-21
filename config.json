@@ -5,5 +5,9 @@
     "user":"root",
     "password":"root"
   },
+  "cookie": {
+    "key": "secret key",
+    "auth": "__auth_id"
+  },
   "dialect":"mysql"
 }
