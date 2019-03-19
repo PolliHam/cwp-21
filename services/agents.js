@@ -13,8 +13,8 @@ class AgentsService extends CrudService{
         return super.create(data);
     }
 
-    async update(date) {
-        let flag = validator.validate('agents', data);
+    async update(data) {
+        let flag = validator.validate('agentsUpdate', data);
 
         if(flag.error){
             throw errors.validateError;
@@ -36,22 +36,22 @@ class AgentsService extends CrudService{
         return super.delete(id);
     }
 
-    async bindToOffis(pid, pidOffice){
+    async bindToOffice(pid, pidOffice){
         let id = parseInt(pid);
         let idOffice = parseInt(pidOffice);
 
         if(id && idOffice) {
-            return super.update(id, { officeId: idOffice })
+            return super.update({ id: id, officeId: idOffice })
         }
 
         throw errors.invalidId;
     }
 
-    async unbindToOffis(pid){
-        let id = parseInt(pid);
+    async unbindFromOffice(pid){
+        let Id = parseInt(pid);
 
-        if(id) {
-            return super.update(id, { officeId: null })
+        if(Id) {
+            return super.update({id:Id, officeId: null })
         }
 
         throw errors.invalidId;

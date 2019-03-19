@@ -14,14 +14,14 @@ class PropertiesService extends CrudService {
 
     }
 
-    async update(id, data) {
-        let validationResult = validator.validate('properties', data);
+    async update(data) {
+        let validationResult = validator.validate('propertiesUpdate', data);
 
         if (validationResult.error) {
             throw errors.validateError;
         }
 
-        return super.update(id, data);
+        return super.update(data);
     }
 
     async bindToAgent(pid, pidAgent) {
@@ -29,16 +29,16 @@ class PropertiesService extends CrudService {
         let idAgent = parseInt(pidAgent);
 
         if (idAgent  && id) {
-            return super.update(id, { agentId: idAgent  })
+            return super.update({ id: id, agentId: idAgent  })
         }
 
         throw errors.invalidId;
     }
 
-    async unbindToAgent(pid) {
+    async unbindFromAgent(pid) {
         const id = parseInt(pid);
         if (id) {
-            return super.update(id, { agentId: null });
+            return super.update({id:id,  agentId: null });
         }
 
         throw errors.invalidId;

@@ -6,10 +6,23 @@ const schemas = {
         website: Joi.string(),
         address: Joi.string()
     }),
+    'officesUpdate': Joi.object().keys({
+        id: Joi.number().positive(),
+        title: Joi.string().optional(),
+        website: Joi.string().optional(),
+        address: Joi.string().optional()
+    }),
     'agents': Joi.object().keys({
         name: Joi.string(),
         email: Joi.string().email(),
         tel: Joi.string(),
+        officeId: Joi.number().positive().optional()
+    }),
+    'agentsUpdate': Joi.object().keys({
+        id: Joi.number().positive(),
+        name: Joi.string().optional(),
+        email: Joi.string().email().optional(),
+        tel: Joi.string().optional(),
         officeId: Joi.number().positive().optional()
     }),
     'properties': Joi.object().keys({
@@ -17,6 +30,14 @@ const schemas = {
         price: Joi.number().positive(),
         currency: Joi.string().regex(/(?:BYN|USD|EUR)/),
         location: Joi.string(),
+        agentId: Joi.number().positive().optional()
+    }),
+    'propertiesUpdate': Joi.object().keys({
+        id: Joi.number().positive(),
+        heading: Joi.string().optional(),
+        price: Joi.number().positive().optional(),
+        currency: Joi.string().regex(/(?:BYN|USD|EUR)/).optional(),
+        location: Joi.string().optional(),
         agentId: Joi.number().positive().optional()
     })
 };

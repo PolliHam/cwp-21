@@ -1,0 +1,50 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const errors = require('./helpers/errors.js');
+
+const PropertiesService = require('./services/properties.js');
+const AgentsService = require('./services/agents');
+const OfficesService = require('./services/offices');
+const CacheService = require('./services/cache');
+const LoggerService = require('./services/logger');
+
+module.exports = (db, config) => {
+    const app = express();
+    const propertiesService = new PropertiesService(
+        db.properties,
+        errors
+    );
+
+    const agentsService = new AgentsService(
+        db.agents,
+        errors
+    );
+    const officesService = new OfficesService(
+        db.offices,
+        errors
+    );
+
+    const cacheService = new CacheService();
+    const loggerService = new LoggerService();
+
+    const logger = require('./global-controllers/logger.js')(loggerService);
+    const cache = require('./global-controllers/cache.js')(cacheService, loggerService);
+
+    const error = require('./global-controllers/error.js');
+
+    const apiController = require('./controllers/api.js')(
+        officesService,
+        agentsService,
+        propertiesService,
+        cacheService
+    );
+    app.use(express.static('public'));
+    app.use(bodyParser.json());
+    app.use('/api', cache);
+    app.use('/api', logger);
+    app.use('/api', apiController);
+    app.use('/api', error);
+
+    return app;
+};

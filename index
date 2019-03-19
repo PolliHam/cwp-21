@@ -1,2 +1,10 @@
+const Sequelize = require('sequelize');
+const config = require('./config');
+const db = require('./context/index')(Sequelize, config);
+const server = require('./server')(db);
 
+(async function () {
+    await db.sequelize.sync();
 
+    server.listen(3000, () => console.log('Running'));
+})();

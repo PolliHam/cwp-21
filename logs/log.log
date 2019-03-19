@@ -1,0 +1,5 @@
+{"message":"суббота, 16 марта 2019 г., 10:33 /api/office/ GET  ","level":"info"}
+{"message":"суббота, 16 марта 2019 г., 10:33 /api/office/ GET FROM CACHE","level":"info"}
+{"message":"суббота, 16 марта 2019 г., 10:33 /api/office/?limit=1&page=1 GET \n query: {\"limit\":\"1\",\"page\":\"1\"} ","level":"info"}
+{"message":"суббота, 16 марта 2019 г., 10:34 /api/office/2 GET  ","level":"info"}
+{"message":"суббота, 16 марта 2019 г., 10:34 /api/office/create POST  \n body: {\"title\":\"Авангард Недвижимость\",\"website\":\"https://avangard-n.by\",\"address\":\"Минск, проспект Победителей, 17, офис 121\"}","level":"info"}

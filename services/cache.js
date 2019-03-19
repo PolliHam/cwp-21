@@ -1,33 +1,19 @@
-const LRU = require("lru-cache");
-const options = {
-    max: 5,
-    length: function (n, key) { return n * 2 + key.length },
-    dispose: function (key, n) { /*n.close() */},
-    maxAge: 1000 * 30
-};
-
-const otherCache = LRU(50) // sets just the max size
+ const LRU = require('lru-cache');
 
 class CacheService{
-    constructor() {
-        this.cache = LRU(options);
+    constructor(){
+        this.cache = new LRU({
+            max: 5,
+            maxAge: 1000*30
+        })
     }
 
-
-    async set(req, data){
-        this.cache.set(req, await JSON.stringify(data));
+    async set(req, data) {
+        this.cache.set(`${req.method}${req.originalUrl}`, data);
     }
 
-    async get(req){
-        let result =  this.cache.get(req);
-        if (result !== undefined && result != null) {
-            result = await JSON.parse(result);
-        }
-        return result;
-    }
-
-    async invalidate(req){
-
+    async get(req) {
+        return this.cache.get(`${req.method}${req.originalUrl}`);
     }
 }
 

@@ -4,6 +4,7 @@ const errors = require('../helpers/errors');
 
 class OfficesService extends CrudService{
     async create(data) {
+
         let flag = validator.validate('offices', data);
 
         if(flag.error){
@@ -13,8 +14,8 @@ class OfficesService extends CrudService{
         return super.create(data);
     }
 
-    async update(date) {
-        let flag = validator.validate('offices', data);
+    async update(data) {
+        let flag = validator.validate('officesUpdate', data);
 
         if(flag.error){
             throw errors.validateError;
